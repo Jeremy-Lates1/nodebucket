@@ -1,3 +1,11 @@
+/**
+ * Title: sign-in.component.ts
+ * Author: Jeremy Lates
+ * Date: 06-08-2024
+ * Attributions:
+ * Code Adapted from Professor Krasso's class material and github resource https://github.com/buwebdev
+ */
+
 import { Component, OnInit } from "@angular/core";
 import { SignInService } from "../sign-in.service";
 import { Router } from "@angular/router";
@@ -22,7 +30,10 @@ export class SignInComponent implements OnInit {
     this.errorMessage = "";
     this.signinForm = this.fb.group({ employeeId: "" });
 
-    console.log(this.cookieService.get("session_user"));
+    //This is for test only
+    this.cookieService.delete("session_user");
+
+    console.log("Session Id: " + this.cookieService.get("session_user"));
   }
 
   ngOnInit(): void {
@@ -45,9 +56,13 @@ export class SignInComponent implements OnInit {
     const formValues = this.signinForm.value;
     const employeeId = parseInt(formValues.employeeId);
 
+    console.log("Entered onSubmit function....");
+
     if (this.signinService.validate(employeeId)) {
+      console.log("Singin Serivce validation call on employee id passed....");
       this.cookieService.set("session_user", employeeId.toString(), 1);
-      this.router.navigate(["/"]);
+
+      this.router.navigate(["tasks"]);
     } else {
       this.errorMessage = `The employee ID you entered is invalid, please try again.`;
     }

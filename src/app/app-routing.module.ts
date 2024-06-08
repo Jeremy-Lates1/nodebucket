@@ -1,7 +1,9 @@
 /**
  * Title: app-routing.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jeremy Lates
+ * Date: 06-08-2024
+ * Attributions:
+ * Code Adapted from Professor Krasso's class material and github resource https://github.com/buwebdev
  */
 
 // imports statements
@@ -10,8 +12,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { BaseLayoutComponent } from "./layouts/base-layout/base-layout.component";
 import { HomeComponent } from "./home/home.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
+import { TasksComponent } from "./tasks/tasks.component";
+import { SignInGuard } from "./sign-in.guard";
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
+/*
 const routes: Routes = [
   {
     path: "signin",
@@ -38,6 +43,36 @@ const routes: Routes = [
     path: "security",
     loadChildren: () =>
       import("./security/security.module").then((m) => m.SecurityModule),
+  },
+];
+*/
+
+const routes: Routes = [
+  {
+    path: "",
+    component: BaseLayoutComponent,
+    //canActivate: [signInGuard],
+    children: [
+      {
+        path: "tasks",
+        component: TasksComponent,
+        canActivate: [SignInGuard],
+      },
+      /*
+      {
+        path: "contact",
+        component: ContactUsComponent,
+      },
+      {
+        path: "about",
+        component: AboutComponent,
+      },
+      */
+    ],
+  },
+  {
+    path: "signin",
+    component: SignInComponent,
   },
 ];
 

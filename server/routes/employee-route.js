@@ -1,3 +1,11 @@
+/**
+ * Title: employee-rooute.js
+ * Author: Jeremy Lates
+ * Date: 06-08-2024
+ * Attributions:
+ * Code Adapted from Professor Krasso's class material and github resource https://github.com/buwebdev
+ */
+
 "use strict";
 
 const express = require("express");
@@ -6,6 +14,34 @@ const createError = require("http-errors");
 
 const router = express.Router();
 
+/**
+ * findEmployeeById
+ * @openapi
+ * /api/employees/{empId}:
+ *   get:
+ *     tags:
+ *       - Employees
+ *     description:  API for returning a employee document
+ *     summary: returns a employee document
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: Employees document empId
+ *         schema:
+ *           type: number
+ *     responses:
+ *       '200':
+ *         description: Employee document
+ *       '400':
+ *         description: Input was not a number
+ *       '404':
+ *         description: Employee not found
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB Exception
+ */
 router.get("/:empId", (req, res, next) => {
   try {
     let { empId } = req.params;

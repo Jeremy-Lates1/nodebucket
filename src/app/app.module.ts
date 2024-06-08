@@ -1,7 +1,9 @@
 /**
  * Title: app.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jeremy Lates
+ * Date: 06-08-2024
+ * Attributions:
+ * Code Adapted from Professor Krasso's class material and github resource https://github.com/buwebdev
  */
 
 // imports statements
@@ -25,6 +27,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TasksComponent } from "./tasks/tasks.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NavComponent,
     FooterComponent,
     SignInComponent,
+    TasksComponent,
   ],
   imports: [
     BrowserModule,
